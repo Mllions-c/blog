@@ -4,5 +4,4 @@ const app = new Koa()
 app.use(async ctx => {
   ctx.body = 'Hello World'
 })
-app.listen(1992)
-console.log('blog start')
+module.exports = app
