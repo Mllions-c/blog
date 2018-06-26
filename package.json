@@ -1,0 +1,23 @@
+{
+  "name": "blog_yang",
+  "version": "1.0.0",
+  "description": "a blog for world",
+  "main": "app.js",
+  "dependencies": {
+    "koa": "^2.5.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rock-the-world/blog.git"
+  },
+  "author": "algo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rock-the-world/blog/issues"
+  },
+  "homepage": "https://github.com/rock-the-world/blog#readme"
+}
