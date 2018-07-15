@@ -1,0 +1,37 @@
+{
+  "apps": [
+    {
+      "name": "api-service",
+      "script": "./bin/main",
+      "env": {
+        "COMMON_VARIABLE": "true"
+      },
+      "env_dev": {
+        "NODE_ENV": "development",
+        "PORT": 9527,
+        "TZ": "Asia/Shanghai"
+      },
+      "env_stg": {
+        "NODE_ENV": "staging",
+        "PORT": 3000,
+        "TZ": "Asia/Shanghai"
+      },
+      "env_prod": {
+        "NODE_ENV": "produnction",
+        "PORT": 3000,
+        "TZ": "Asia/Shanghai"
+      }
+    }
+  ],
+
+  "deploy": {
+    "development": {
+      "user": "sweet",
+      "host": "47.97.102.214",
+      "ref": "origin/master",
+      "repo": "git@github.com:rock-the-world/blog.git",
+      "path": "/home/sweet/blog",
+      "post-deploy": "yarn --production && pm2 startOrRestart deploy.json --env development"
+    }
+  }
+}
