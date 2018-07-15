@@ -4,6 +4,8 @@
   "description": "a blog for world",
   "main": "app.js",
   "dependencies": {
+    "bunyan": "^1.8.12",
+    "config": "^1.30.0",
     "koa": "^2.5.1"
   },
   "devDependencies": {},
@@ -15,7 +17,6 @@
     "url": "git+https://github.com/rock-the-world/blog.git"
   },
   "author": "algo",
-  
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/rock-the-world/blog/issues"
