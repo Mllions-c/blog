@@ -2,7 +2,7 @@
   "apps": [
     {
       "name": "api-service",
-      "script": "./bin/www",
+      "script": "./bin/www.js",
       "env": {
         "COMMON_VARIABLE": "true"
       },
