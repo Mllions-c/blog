@@ -6,11 +6,12 @@ class logger {
         this.logger_level = logger_level || 'debug'
         this.logger_path = logger_path
     }
-    createLogger() {
+    init() {
         const logger = bunyan.createLogger({
             name: this.logger_type,
             streams: this.createStreams()
           })
+          logger.info('logger is start')
         return logger
     }
     createStreams() {

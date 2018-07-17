@@ -8,7 +8,7 @@
       },
       "env_dev": {
         "NODE_ENV": "development",
-        "PORT": 9527,
+        "PORT": 1992,
         "TZ": "Asia/Shanghai"
       },
       "env_stg": {
