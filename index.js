@@ -1,9 +1,8 @@
 const Koa = require('koa')
 const app = new Koa()
 const logger = require('./app/common/logger')
+const KeyGrip = require("keygrip")
 app.keys = new KeyGrip(['im a newer secret', 'i like turtle'], 'sha256');
-
-ctx.cookies.set('name', 'tobi', { signed: true });
 
 app.context.USER = '';
 app.context.logger = new logger({logger_path: './log/api.log'}).createLogger()
@@ -17,6 +16,7 @@ app.use(async ctx => {
 })
 
 app.use(async ctx => {
+  ctx.cookies.set('flag', 'api', { signed: true });
   ctx.body = 'Hello World'
 });
 

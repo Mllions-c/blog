@@ -1,9 +1,8 @@
 const bunyan = require('bunyan')
-const config = require('config')
 
 class logger {
     constructor({logger_type, logger_path, logger_level}) {
-        this.logger_type = logger_type || api
+        this.logger_type = logger_type || 'api'
         this.logger_level = logger_level || 'debug'
         this.logger_path = logger_path
     }
@@ -15,7 +14,7 @@ class logger {
         return logger
     }
     createStreams() {
-        const streams = [{level: logger_level, stream: process.stdout}]
+        const streams = [{level: this.logger_level, stream: process.stdout}]
         if (this.logger_path) {
             streams.push({type: 'rotating-file', period: '1d', count: 1, level: this.logger_level, path: this.logger_path})
           }
