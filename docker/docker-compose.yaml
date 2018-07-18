@@ -11,6 +11,10 @@ services:
   pg-service:
     image: postgres:9.6
     container_name: pg-service
+    environment:
+      - 'POSTGRES_DB=blog
+      - 'POSTGRES_USER=sweet'
+      - 'POSTGRES_PASSWORD=123456yy'
     volumes:
       - ~/Data/pgdata:/var/lib/postgresql/data
     ports:
