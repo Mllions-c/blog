@@ -1,113 +1,18 @@
-version: '3'
+version: '1'
 services:
-  redis-service: #容器名字
-    image: redis # 使用的镜像
-    #build:
-      #context: ../
-      #dockerfile: path/of/Dockerfile  用build指定dockerfile自定义镜像，并把image当做名字
-      #args:
-      #buildno: 1
-      #password: secret
-    command: bundle exec thin -p 3000 # 容器启动后执行的命令
+  redis-service:
+    image: redis
     container_name: redis-service #完全控制容器的名字
-    volumes: # 挂载目录 HOST:CONTAINER,HOST:CONTAINER:ro 让宿主机只读，rw可读写（默认）
-      # 只是指定一个路径，Docker 会自动在创建一个数据卷（这个路径是容器内部的）。
-      - /var/lib/mysql
-      # 使用绝对路径挂载数据卷
-      - /opt/data:/var/lib/mysql
-      # 以 Compose 配置文件为中心的相对路径作为数据卷挂载到容器。
-      - ./cache:/tmp/cache
-      # 使用用户的相对路径（~/ 表示的目录是 /home/<用户目录>/ 或者 /root/）。
-      - ~/configs:/etc/configs/:ro
-      # 已经存在的命名的数据卷。
-      - datavolume:/var/lib/mysql
-    #volumes_from: 从其他容器挂载数据
-      #- service_name:ro
-      #- container:container_name
-      #- container:container_name:rw
-    ports: #映射端口 ,HOST:CONTAINER，只指定容器，宿主机会随机端口 ，建议字符串，yaml解析<60数字有问题
-      - "3000"
-      - "8000:8000"
-      - "49100:22"
-      - "127.0.0.1:8001:8001"
+    ports:
+      - "6379:6379"
     depends_on: #依赖
       - redis
-    #dns: 8.8.8.8指定dns
-    #tmpfs: /run 挂载目录到容器内部
-    #env_file: .env 指定compose变量定义文件
-    #environment: 指定容器的变量
-    #- RACK_ENV=development
-    #- SHOW=true
-    #- SESSION_SECRET
-    #external_links: 连接非compose启动的容器
-    # - redis_1
-    #links: 连接其他容器
-    #- db
-    #extra_hosts: 定义容器内部hosts，/etc/hosts
-    #- "somehost:162.242.195.82"
-    #- "otherhost:50.31.209.229"
-    #labels: 向容器添加元数据
-    #- "com.example.description=Accounting webapp"
-    #network_mode: "bridge" 设置容器网络模式
-    #network_mode: "host"
-    #network_mode: "none"
-    #network_mode: "service:[service name]"
-    #network_mode: "container:[container name/id]"
-  nsqlookupd:
-    image: nsqio/nsq
-    command: /nsqlookupd
-    ports:
-      - "4160:4160/tcp"
-      - "4161:4161"
-  nsqd:
-    image: nsqio/nsq
-    command: /nsqd --lookupd-tcp-address=nsqlookupd:4160
-    depends_on:
-      - nsqlookupd
-    ports:
-      - "4150:4150/tcp"
-      - "4151:4151"
-  nsqadmin:
-    image: nsqio/nsq
-    command: /nsqadmin --lookupd-http-address=nsqlookupd:4161
-    depends_on:
-      - nsqlookupd
-    ports:
-      - "4171:4171"
-
-
---- 
-version: '2'
-
-services:
-  apollo-quick-start:
-    image: nobodyiam/apollo-quick-start
-    container_name: apollo-quick-start
-    depends_on:
-      - apollo-db
-    ports:
-      - "8080:8080"
-      - "8070:8070"
-    links:
-      - apollo-db
-
-  apollo-db:
-    image: mysql:5.7
-    container_name: apollo-db
-    environment:
-      TZ: Asia/Shanghai
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-    depends_on:
-      - apollo-dbdata
-    ports:
-      - "13306:3306"
+  
+  pg-service:
+    image: postgres:9.6
+    container_name: pg-service
     volumes:
-      - ./sql:/docker-entrypoint-initdb.d
-    volumes_from:
-      - apollo-dbdata
-
-  apollo-dbdata:
-    image: alpine:latest
-    container_name: apollo-dbdata
-    volumes:
-      - /var/lib/mysql
+      - ~/Data/pgdata:/var/lib/postgresql/data
+    ports:
+    - "5432:5432"
+    restart: always
