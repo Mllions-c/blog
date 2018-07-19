@@ -1,18 +1,18 @@
-version: '1'
+version: '3'
 services:
   redis-service:
     image: redis
-    container_name: redis-service #完全控制容器的名字
+    container_name: redis-service
     ports:
       - "6379:6379"
-    depends_on: #依赖
+    depends_on:
       - redis
   
   pg-service:
     image: postgres:9.6
     container_name: pg-service
     environment:
-      - 'POSTGRES_DB=blog
+      - 'POSTGRES_DB=blog'
       - 'POSTGRES_USER=sweet'
       - 'POSTGRES_PASSWORD=123456yy'
     volumes:

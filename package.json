@@ -8,11 +8,12 @@
     "config": "^1.30.0",
     "keygrip": "^1.0.2",
     "koa": "^2.5.1",
+    "koa-router": "^7.4.0",
     "nodemon": "^1.18.2"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "nodemon ./bin/www | bunyan"
+    "start": "nodemon --inspect ./bin/www | bunyan"
   },
   "repository": {
     "type": "git",
