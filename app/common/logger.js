@@ -11,7 +11,6 @@ class logger {
             name: this.logger_type,
             streams: this.createStreams()
           })
-          logger.info('logger is start')
         return logger
     }
     createStreams() {

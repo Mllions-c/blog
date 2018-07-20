@@ -19,17 +19,17 @@ class InitRouter {
   }
   
    readFile (fileName, dirname) {
-     const self = this
+     // const self = this
     var filePath = path.join(dirname, fileName)
   
     if (fileName.indexOf('.') === -1 && fs.statSync(filePath).isDirectory()) {
       fs
         .readdirSync(filePath)
-        .forEach(function (file) {
-          self.readFile(file, filePath)
+        .forEach((file) => {
+          this.readFile(file, filePath)
         })
     } else if (fileName.endsWith('.js') && (fileName !== basename)) {
-      self.requireFile(filePath)
+      this.requireFile(filePath)
     }
   }
 }
