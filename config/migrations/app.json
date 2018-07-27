@@ -1,0 +1,13 @@
+{
+    "development": {
+      "username": "sweet",
+      "password": "123456yy",
+      "database": "blog",
+      "host": "localhost",
+      "port": "5432",
+      "dialect": "postgres",
+      "migrationStorage": "sequelize",
+      "migrationStorageTableName": "sequelize_meta"
+    }
+}
+  

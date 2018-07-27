@@ -14,7 +14,7 @@ const hooks = require('../hooks')
 // 重写logging
 _config['logging'] = function (sql, latency) {
   // const requestId = ns.get('requestId')
-  const info = {sql, latency}
+  const info = {sql, instance: latency.instance}
   info.type = 'sql'
   logger.info(info)
 }

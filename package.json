@@ -6,22 +6,33 @@
   "dependencies": {
     "bunyan": "^1.8.12",
     "config": "^1.30.0",
+    "jsonwebtoken": "^8.3.0",
     "keygrip": "^1.0.2",
     "koa": "^2.5.1",
+    "koa-body": "^4.0.4",
+    "koa-helmet": "^4.0.0",
     "koa-router": "^7.4.0",
+    "lodash": "^4.17.10",
     "nodemon": "^1.18.2",
     "pg": "^7.4.3",
-    "sequelize": "^4.38.0"
+    "redis": "^2.8.0",
+    "sequelize": "^4.38.0",
+    "sequelize-cli": "^4.0.0",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "eslint": "^5.1.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-node": "^7.0.1",
-    "eslint-plugin-promise": "^3.5.0"
+    "eslint-plugin-promise": "^3.8.0"
   },
   "scripts": {
-    "start": "NODE_ENV=development nodemon --inspect ./bin/www | bunyan"
+    "migration-create": "sequelize migration:create --config ./config/migrations/app.json --name defalut",
+    "migration-app": "node_modules/.bin/sequelize db:migrate --config ./config/migrations/app.json",
+    "migrate": "node_modules/.bin/sequelize",
+    "start": "NODE_ENV=development nodemon --inspect ./bin/www | bunyan",
+    "quicklint": "LIST=`git diff-index --name-only HEAD | grep .*\\.js | grep -v ejs |  grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi"
   },
   "repository": {
     "type": "git",
