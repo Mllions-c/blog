@@ -1,5 +1,5 @@
-const Router = require('koa-router');
-const router = new Router( {prefix: '/v3'})
+const Router = require('koa-router')
+const router = new Router({prefix: '/v3'})
 const {register} = require('../../service/register/register')
 /**
  *注册路由
