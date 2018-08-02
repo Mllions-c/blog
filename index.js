@@ -5,7 +5,7 @@ const Logger = require('./app/common/logger')
 const RedisService = require('./util/redisService')
 const KeyGrip = require('keygrip')
 const app = new Koa()
-const routes = require('./app/routers')
+const Routes = require('./app/routers')
 const db = require('./app/models')
 const Promise = require('bluebird')
 const redis = Promise.promisifyAll(require('./app/common/redis'))
@@ -27,7 +27,7 @@ try {
     await next()
   })
 
-  new routes(app).start()
+  new Routes(app).start()
 
   app.on('error', (err, ctx) => {
     ctx.logger.error(err)

@@ -1,27 +1,27 @@
-const Router = require('koa-router');
+const Router = require('koa-router')
 const fs = require('fs')
-const path =require('path')
+const path = require('path')
 const basename = path.basename(module.filename)
 const common = require('../common')
 const router = new Router()
 
 class InitRouter {
-  constructor(app) {
+  constructor (app) {
     this.app = app
   }
-  start() {
+  start () {
     this.readFile('', __dirname)
   }
-   requireFile (filePath) {
+  requireFile (filePath) {
     const routers = require(filePath)
     routers(this.app)
-    this.app.context.logger.info('router init success')
+    this.app.context.logger.info(path.basename(filePath, '.js'), 'router init success')
   }
-  
-   readFile (fileName, dirname) {
-     // const self = this
+
+  readFile (fileName, dirname) {
+    // const self = this
     var filePath = path.join(dirname, fileName)
-  
+
     if (fileName.indexOf('.') === -1 && fs.statSync(filePath).isDirectory()) {
       fs
         .readdirSync(filePath)
@@ -34,6 +34,4 @@ class InitRouter {
   }
 }
 
-
 module.exports = InitRouter
-  

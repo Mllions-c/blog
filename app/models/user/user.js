@@ -43,7 +43,6 @@ module.exports = function (sequelize, DataTypes) {
     tableName: 'users',
     classMethods: {
       associate: function (models) {
-        User.belongsTo(),
         User.addScope('basic', {
           attributes: ['id', 'global_id', 'username']
         })
