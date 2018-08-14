@@ -4,21 +4,21 @@ class redisService {
   }
 
   set (key, value) {
-    return this.redis.setAsync(key, value).then((err, data) => {
+    return this.redis.setAsync(key, value).then((data, err) => {
       if (err) return new Error(err)
       return data
     })
   }
 
   setExpire (key, value, expire) {
-    return this.redis.setAsync(key, value, 'EX', expire).then((err, data) => {
+    return this.redis.setAsync(key, value, 'EX', expire).then((data, err) => {
       if (err) return new Error(err)
       return data
     })
   }
 
   hmset (scope, obj) {
-    return this.redis.hmsetAsync(scope, obj).then((err, data) => {
+    return this.redis.hmsetAsync(scope, obj).then((data, err) => {
       if (err) return new Error(err)
       return data
     })
@@ -32,49 +32,49 @@ class redisService {
   }
 
   hgetall (scope) {
-    return this.redis.hgetallAsync(scope).then((err, data) => {
+    return this.redis.hgetallAsync(scope).then((data, err) => {
       if (err) return new Error(err)
       return data
     })
   }
 
   del (key) {
-    return this.redis.delAsync(scope).then((err, data) => {
+    return this.redis.delAsync(scope).then((data, err) => {
       if (err) return new Error(err)
       return data
     })
   }
 
   publish (channel, msg) {
-    return this.redis.publishAsync(channel, msg).then((err, data) => {
+    return this.redis.publishAsync(channel, msg).then((data, err) => {
       if (err) return new Error(err)
       return data
     })
   }
 
   rpush (channel, msg) {
-    return this.redis.rpushAsync(channel, msg).then((err, data) => {
+    return this.redis.rpushAsync(channel, msg).then((data, err) => {
       if (err) return new Error(err)
       return data
     })
   }
 
   lpush (channel, msg) {
-    return this.redis.lpushAsync(channel, msg).then((err, data) => {
+    return this.redis.lpushAsync(channel, msg).then((data, err) => {
       if (err) return new Error(err)
       return data
     })
   }
 
   expire (key, seconds) {
-    return this.redis.expireAsync(key, seconds).then((err, data) => {
+    return this.redis.expireAsync(key, seconds).then((data, err) => {
       if (err) return new Error(err)
       return data
     })
   }
 
   zadd (value) {
-    return this.redis.zaddAsync(value).then((err, data) => {
+    return this.redis.zaddAsync(value).then((data, err) => {
       if (err) return new Error(err)
       return data
     })
@@ -85,21 +85,21 @@ class redisService {
     if (withscores) {
       args.push('withscores')
     }
-    return this.redis.zrevrangeAsync(...args).then((err, data) => {
+    return this.redis.zrevrangeAsync(...args).then((data, err) => {
       if (err) return new Error(err)
       return data
     })
   }
 
   zcount (scope) {
-    return this.redis.zcardAsync(scope).then((err, data) => {
+    return this.redis.zcardAsync(scope).then((data, err) => {
       if (err) return new Error(err)
       return data
     })
   }
 
   exists (key) {
-    return this.redis.existsAsync(scope).then((err, data) => {
+    return this.redis.existsAsync(key).then((data, err) => {
       if (err) return new Error(err)
       return data
     })

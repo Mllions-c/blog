@@ -2,8 +2,8 @@ const app = require('../index')
 const http = require('http')
 const https = require('https')
 const Alphabet = require('../util/console/console.js')
-http.createServer(app.callback()).listen(1992)
-https.createServer(app.callback()).listen(1991)
+http.createServer(app.callback()).listen(1992, '0.0.0.0')
+https.createServer(app.callback()).listen(1991, '0.0.0.0')
 const _logger = require('../app/common/logger.js')
 
 async function restartLoggingRecord (params) {
