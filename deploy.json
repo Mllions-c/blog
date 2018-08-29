@@ -31,7 +31,7 @@
       "ref": "origin/master",
       "repo": "git@github.com:rock-the-world/blog.git",
       "path": "/home/sweet/blog",
-      "post-deploy": "sudo npm i && pm2 startOrRestart deploy.json --env development"
+      "post-deploy": "yarn --production && pm2 startOrRestart deploy.json --env development"
     }
   }
 }
