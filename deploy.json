@@ -27,7 +27,7 @@
   "deploy": {
     "development": {
       "user": "sweet",
-      "host": "47.97.102.214",
+      "host": "47.104.187.19",
       "ref": "origin/master",
       "repo": "git@github.com:rock-the-world/blog.git",
       "path": "/home/sweet/blog",
